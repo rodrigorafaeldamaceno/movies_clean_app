@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_clean_app/core/get_it/service_locator.dart';
-import 'package:movies_clean_app/modules/movie/domain/usecases/get_popular_movies_usecase.dart';
-import 'package:movies_clean_app/modules/movie/external/datasources/movie_datasouce_impl.dart';
-import 'package:movies_clean_app/modules/movie/infra/repositories/movies_repository_impl.dart';
 import 'package:movies_clean_app/modules/movie/presenter/cubits/movies_cubit.dart';
 import 'package:movies_clean_app/modules/movie/presenter/cubits/movies_state.dart';
 
