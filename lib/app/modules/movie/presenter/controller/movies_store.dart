@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
 
+import '../../domain/entities/movie_entity.dart';
 import '../../domain/usecases/get_popular_movies_usecase.dart';
 part 'movies_store.g.dart';
 

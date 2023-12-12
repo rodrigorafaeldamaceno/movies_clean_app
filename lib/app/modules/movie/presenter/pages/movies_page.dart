@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:movies_clean_app/core/get_it/service_locator.dart';
-import 'package:movies_clean_app/modules/movie/presenter/controller/movies_store.dart';
-import 'package:movies_clean_app/modules/movie/presenter/widgets/movie_widget.dart';
+
+import '../../../../core/get_it/service_locator.dart';
+import '../controller/movies_store.dart';
+import '../widgets/movie_widget.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});

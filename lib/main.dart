@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_clean_app/core/get_it/service_locator.dart';
-import 'package:movies_clean_app/modules/movie/presenter/pages/movies_page.dart';
+
+import 'app/core/get_it/service_locator.dart';
+import 'app/modules/movie/presenter/pages/movies_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:movies_clean_app/core/http/http_client.dart';
-import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
-import 'package:movies_clean_app/modules/movie/external/mappers/movie_entity_mapper.dart';
-import 'package:movies_clean_app/modules/movie/infra/datasources/movie_datasource.dart';
+import '../../../../core/http/http_client.dart';
+import '../../domain/entities/movie_entity.dart';
+import '../../infra/datasources/movie_datasource.dart';
+import '../mappers/movie_entity_mapper.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
   final httpClient = HttpClient();

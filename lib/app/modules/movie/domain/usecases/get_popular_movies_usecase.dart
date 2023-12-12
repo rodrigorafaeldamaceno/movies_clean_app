@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
-import 'package:movies_clean_app/modules/movie/domain/repositories/movie_repository.dart';
+
+import '../entities/movie_entity.dart';
+import '../repositories/movie_repository.dart';
 
 abstract class GetPopularMoviesUseCase {
   // Future<List<MovieEntity>> call();
