@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:movies_clean_app/core/get_it/service_locator.dart';
 import 'package:movies_clean_app/modules/movie/presenter/controller/movies_store.dart';
+import 'package:movies_clean_app/modules/movie/presenter/widgets/movie_widget.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -28,40 +29,33 @@ class _MoviesPageState extends State<MoviesPage> {
       ),
       body: Observer(
         builder: (context) {
-          return Column(
-            children: <Widget>[
-              const Text('Movies Page'),
-              Observer(
-                builder: (context) {
-                  if (controller.isLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (controller.isLoaded) {
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: controller.movies.length,
-                        itemBuilder: (context, index) {
-                          final movie = controller.movies[index];
+          if (controller.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller.isLoaded) {
+            return GridView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: controller.movies.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 0.7,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
+              ),
+              itemBuilder: (context, index) {
+                final movie = controller.movies[index];
 
-                          return ListTile(
-                            title: Text(movie.title),
-                            subtitle: Text(movie.overview),
-                          );
-                        },
-                      ),
-                    );
-                  } else if (controller.isError) {
-                    return const Center(
-                      child: Text('error'),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                },
-              )
-            ],
-          );
+                return MovieWidget(movie: movie);
+              },
+            );
+          } else if (controller.isError) {
+            return const Center(
+              child: Text('error'),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
         },
       ),
     );
