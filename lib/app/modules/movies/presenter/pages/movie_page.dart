@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../domain/entities/movie_entity.dart';
@@ -41,9 +42,7 @@ class MoviePage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.network(
-                  'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                ),
+                CachedNetworkImage(imageUrl: movie.backdropUrl),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -67,15 +66,13 @@ class MoviePage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            DateTime.parse(details.releaseDate)
-                                .year
-                                .toString(),
+                            DateTime.parse(details.releaseDate).year.toString(),
                           ),
                         ],
                       ),
                       // Builder(builder: (context) {
                       //   String text = '${details?.runtime} | ';
-            
+
                       //   text = text +=
                       //       (details?.genres?.map((e) => e.name).join(', ') ??
                       //           '');
@@ -97,7 +94,7 @@ class MoviePage extends StatelessWidget {
                       //           child: CircularProgressIndicator(),
                       //         );
                       //       }
-            
+
                       //       return SizedBox(
                       //         child: ListView.separated(
                       //           shrinkWrap: true,

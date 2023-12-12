@@ -7,6 +7,9 @@ class MovieEntity {
   final String releaseDate;
   final double voteAverage;
 
+  String get posterUrl => 'https://image.tmdb.org/t/p/w500$posterPath';
+  String get backdropUrl => 'https://image.tmdb.org/t/p/w500$backdropPath';
+
   MovieEntity({
     required this.id,
     required this.title,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie_entity.dart';
@@ -17,9 +18,7 @@ class MovieCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                  ),
+                  image: CachedNetworkImageProvider(movie.backdropUrl),
                   fit: BoxFit.cover,
                 ),
               ),
