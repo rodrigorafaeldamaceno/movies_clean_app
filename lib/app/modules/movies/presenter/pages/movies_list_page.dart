@@ -3,7 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../controller/movies_store.dart';
-import '../widgets/movie_widget.dart';
+import '../widgets/movie_card.dart';
+import 'movie_page.dart';
 
 class MoviesListPage extends StatefulWidget {
   const MoviesListPage({super.key});
@@ -41,13 +42,21 @@ class _MoviesListPageState extends State<MoviesListPage> {
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
                 childAspectRatio: 0.7,
-                crossAxisSpacing: 4,
-                mainAxisSpacing: 4,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
               ),
               itemBuilder: (context, index) {
                 final movie = controller.movies[index];
 
-                return MovieWidget(movie: movie);
+                return MovieCard(
+                  movie: movie,
+                  onTap: () {
+                    Modular.to.pushNamed(
+                      '/movie',
+                      arguments: MoviesPageProps(movie: movie),
+                    );
+                  },
+                );
               },
             );
           } else if (controller.isError) {
