@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:movies_clean_app/app/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies_clean_app/app/modules/movies/presenter/controller/movies_store.dart';
+import '../../domain/entities/movie_entity.dart';
+import '../controller/movies_store.dart';
 
 class MoviesPageProps {
   const MoviesPageProps({required this.movie});

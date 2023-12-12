@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_clean_app/app/modules/movies/domain/errors/movie_errors.dart';
+import '../errors/movie_errors.dart';
 
 import '../entities/movie_entity.dart';
 import '../repositories/movie_repository.dart';

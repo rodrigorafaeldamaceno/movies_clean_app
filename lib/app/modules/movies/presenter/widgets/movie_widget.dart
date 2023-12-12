@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:movies_clean_app/app/modules/movies/presenter/pages/movie_page.dart';
+import '../pages/movie_page.dart';
 
 import '../../domain/entities/movie_entity.dart';
 
