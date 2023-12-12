@@ -1,4 +1,6 @@
-class MovieEntity {
+import 'package:equatable/equatable.dart';
+
+class MovieEntity extends Equatable {
   final int id;
   final String title;
   final String posterPath;
@@ -10,7 +12,7 @@ class MovieEntity {
   String get posterUrl => 'https://image.tmdb.org/t/p/w500$posterPath';
   String get backdropUrl => 'https://image.tmdb.org/t/p/w500$backdropPath';
 
-  MovieEntity({
+  const MovieEntity({
     required this.id,
     required this.title,
     required this.posterPath,
@@ -21,29 +23,15 @@ class MovieEntity {
   });
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is MovieEntity &&
-        other.id == id &&
-        other.title == title &&
-        other.posterPath == posterPath &&
-        other.backdropPath == backdropPath &&
-        other.overview == overview &&
-        other.releaseDate == releaseDate &&
-        other.voteAverage == voteAverage;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        title.hashCode ^
-        posterPath.hashCode ^
-        backdropPath.hashCode ^
-        overview.hashCode ^
-        releaseDate.hashCode ^
-        voteAverage.hashCode;
-  }
+  List<Object?> get props => [
+        id,
+        title,
+        posterPath,
+        backdropPath,
+        overview,
+        releaseDate,
+        voteAverage,
+      ];
 
   @override
   String toString() {
