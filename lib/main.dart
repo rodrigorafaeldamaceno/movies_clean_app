@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import 'app/app_module.dart';
+import 'app/app_widget.dart';
 import 'app/core/get_it/service_locator.dart';
-import 'app/modules/movie/presenter/pages/movies_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,18 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Movies App',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MoviesPage(),
+    return ModularApp(
+      module: AppModule(),
+      child: const AppWidget(),
     );
   }
 }
