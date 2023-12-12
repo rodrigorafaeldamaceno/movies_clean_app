@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:movies_clean_app/app/modules/movies/presenter/pages/movie_page.dart';
 
 import '../../domain/entities/movie_entity.dart';
 
@@ -9,18 +11,26 @@ class MovieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Image.network(
-          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-          height: 200,
-        ),
-        Text(
-          '${movie.title}\n',
-          textAlign: TextAlign.center,
-          maxLines: 2,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () {
+        Modular.to.pushNamed(
+          '/movie',
+          arguments: MoviesPageProps(movie: movie),
+        );
+      },
+      child: Column(
+        children: <Widget>[
+          Image.network(
+            'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+            height: 200,
+          ),
+          Text(
+            '${movie.title}\n',
+            textAlign: TextAlign.center,
+            maxLines: 2,
+          ),
+        ],
+      ),
     );
   }
 }

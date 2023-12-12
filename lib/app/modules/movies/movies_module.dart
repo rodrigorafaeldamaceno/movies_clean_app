@@ -4,7 +4,8 @@ import 'package:movies_clean_app/app/modules/movies/infra/repositories/movies_re
 
 import 'external/datasources/movie_datasouce_impl.dart';
 import 'presenter/controller/movies_store.dart';
-import 'presenter/pages/movies_page.dart';
+import 'presenter/pages/movie_page.dart';
+import 'presenter/pages/movies_list_page.dart';
 
 class MoviesModule extends Module {
   @override
@@ -22,6 +23,10 @@ class MoviesModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => const MoviesPage());
+    r.child('/', child: (context) => const MoviesListPage());
+    r.child(
+      '/movie',
+      child: (context) => MoviePage(props: r.args.data as MoviesPageProps),
+    );
   }
 }

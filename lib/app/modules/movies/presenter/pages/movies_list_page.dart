@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../core/get_it/service_locator.dart';
 import '../controller/movies_store.dart';
 import '../widgets/movie_widget.dart';
 
-class MoviesPage extends StatefulWidget {
-  const MoviesPage({super.key});
+class MoviesListPage extends StatefulWidget {
+  const MoviesListPage({super.key});
 
   @override
-  State<MoviesPage> createState() => _MoviesPageState();
+  State<MoviesListPage> createState() => _MoviesListPageState();
 }
 
-class _MoviesPageState extends State<MoviesPage> {
+class _MoviesListPageState extends State<MoviesListPage> {
   final MoviesStore controller = Modular.get();
 
   @override
