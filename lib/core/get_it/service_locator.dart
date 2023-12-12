@@ -5,7 +5,7 @@ import 'package:movies_clean_app/modules/movie/domain/usecases/get_popular_movie
 import 'package:movies_clean_app/modules/movie/external/datasources/movie_datasouce_impl.dart';
 import 'package:movies_clean_app/modules/movie/infra/datasources/movie_datasource.dart';
 import 'package:movies_clean_app/modules/movie/infra/repositories/movies_repository_impl.dart';
-import 'package:movies_clean_app/modules/movie/presenter/cubits/movies_cubit.dart';
+import 'package:movies_clean_app/modules/movie/presenter/controller/movies_store.dart';
 
 final getIt = GetIt.instance;
 
@@ -16,6 +16,7 @@ void initServiceLocator() {
       () => MovieRepositoryImpl(dataSource: getIt()));
   getIt.registerFactory<GetPopularMoviesUseCase>(
       () => GetPopularMoviesUseCaseImpl(repository: getIt()));
-  getIt.registerFactory<MoviesCubit>(
-      () => MoviesCubit(getPopularMoviesUseCase: getIt()));
+
+  getIt.registerFactory<MoviesStore>(
+      () => MoviesStore(getPopularMoviesUseCase: getIt()));
 }

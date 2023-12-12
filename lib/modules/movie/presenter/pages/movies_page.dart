@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:movies_clean_app/core/get_it/service_locator.dart';
-import 'package:movies_clean_app/modules/movie/presenter/cubits/movies_cubit.dart';
-import 'package:movies_clean_app/modules/movie/presenter/cubits/movies_state.dart';
+import 'package:movies_clean_app/modules/movie/presenter/controller/movies_store.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -12,13 +11,13 @@ class MoviesPage extends StatefulWidget {
 }
 
 class _MoviesPageState extends State<MoviesPage> {
-  final MoviesCubit cubit = getIt();
+  final MoviesStore controller = getIt();
 
   @override
   void initState() {
     super.initState();
 
-    cubit.getPopularMovies();
+    controller.getPopularMovies();
   }
 
   @override
@@ -27,43 +26,43 @@ class _MoviesPageState extends State<MoviesPage> {
       appBar: AppBar(
         title: const Text('Movies App'),
       ),
-      body: BlocProvider(
-        create: (_) => cubit,
-        child: Column(
-          children: <Widget>[
-            const Text('Movies Page'),
-            BlocConsumer<MoviesCubit, MoviesState>(
-              builder: (context, state) {
-                if (state is MoviesLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is MoviesLoaded) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: state.movies.length,
-                      itemBuilder: (context, index) {
-                        final movie = state.movies[index];
+      body: Observer(
+        builder: (context) {
+          return Column(
+            children: <Widget>[
+              const Text('Movies Page'),
+              Observer(
+                builder: (context) {
+                  if (controller.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (controller.isLoaded) {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: controller.movies.length,
+                        itemBuilder: (context, index) {
+                          final movie = controller.movies[index];
 
-                        return ListTile(
-                          title: Text(movie.title),
-                          subtitle: Text(movie.overview),
-                        );
-                      },
-                    ),
-                  );
-                } else if (state is MoviesError) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              },
-              listener: (_, __) {},
-            )
-          ],
-        ),
+                          return ListTile(
+                            title: Text(movie.title),
+                            subtitle: Text(movie.overview),
+                          );
+                        },
+                      ),
+                    );
+                  } else if (controller.isError) {
+                    return const Center(
+                      child: Text('error'),
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              )
+            ],
+          );
+        },
       ),
     );
   }

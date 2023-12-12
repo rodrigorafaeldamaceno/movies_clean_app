@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
 import 'package:movies_clean_app/modules/movie/domain/repositories/movie_repository.dart';
 
 abstract class GetPopularMoviesUseCase {
-  Future<List<MovieEntity>> call();
+  // Future<List<MovieEntity>> call();
+  Future<Either<Exception, List<MovieEntity>>> call();
 }
 
 class GetPopularMoviesUseCaseImpl implements GetPopularMoviesUseCase {
@@ -11,7 +13,13 @@ class GetPopularMoviesUseCaseImpl implements GetPopularMoviesUseCase {
   GetPopularMoviesUseCaseImpl({required this.repository});
 
   @override
-  Future<List<MovieEntity>> call() async {
-    return await repository.getPopularMovies();
+  Future<Either<Exception, List<MovieEntity>>> call() async {
+    try {
+      final movies = await repository.getPopularMovies();
+
+      return Right(movies);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
   }
 }
