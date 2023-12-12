@@ -1,4 +1,4 @@
-import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
+import '../../domain/entities/movie_entity.dart';
 
 class MovieEntityMapper {
   static MovieEntity fromJson(Map<String, dynamic> json) {

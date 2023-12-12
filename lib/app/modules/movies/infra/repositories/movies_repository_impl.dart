@@ -1,6 +1,6 @@
-import 'package:movies_clean_app/modules/movie/domain/entities/movie_entity.dart';
-import 'package:movies_clean_app/modules/movie/domain/repositories/movie_repository.dart';
-import 'package:movies_clean_app/modules/movie/infra/datasources/movie_datasource.dart';
+import '../../domain/entities/movie_entity.dart';
+import '../../domain/repositories/movie_repository.dart';
+import '../datasources/movie_datasource.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieDataSource _dataSource;
