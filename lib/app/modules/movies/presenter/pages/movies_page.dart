@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/get_it/service_locator.dart';
 import '../controller/movies_store.dart';
@@ -13,7 +14,7 @@ class MoviesPage extends StatefulWidget {
 }
 
 class _MoviesPageState extends State<MoviesPage> {
-  final MoviesStore controller = getIt();
+  final MoviesStore controller = Modular.get();
 
   @override
   void initState() {
